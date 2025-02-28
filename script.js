@@ -83,6 +83,30 @@ const paymentLinks = {
     meili_orange: {
         delivery: "https://www.paypal.com/ncp/payment/MYVK7KLVW5EMQ",
         inperson: "https://www.paypal.com/ncp/payment/BTGY96QNA4TF8"
+    },
+    soap_black: {
+        delivery: "https://www.paypal.com/ncp/payment/ACWBJUEK4S8SW",
+        inperson: "https://www.paypal.com/ncp/payment/37WRLULFKHZWA"
+    },
+    soap_white: {
+        delivery: "https://www.paypal.com/ncp/payment/N2NPTQVLY3HZN",
+        inperson: "https://www.paypal.com/ncp/payment/JYNDV3SQPJBXQ"
+    },
+    soap_space_grey: {
+        delivery: "https://www.paypal.com/ncp/payment/GS2L84FKRDM9G",
+        inperson: "https://www.paypal.com/ncp/payment/UZMTHDNWZR2V6"
+    },
+    soap_blue: {
+        delivery: "https://www.paypal.com/ncp/payment/TXSHBCPD65PS6",
+        inperson: "https://www.paypal.com/ncp/payment/4C7T3CVJZ4PCQ"
+    },
+    soap_red: {
+        delivery: "https://www.paypal.com/ncp/payment/TS7T8QRH67L64",
+        inperson: "https://www.paypal.com/ncp/payment/DZUVZQT96FFUA"
+    },
+    soap_orange: {
+        delivery: "https://www.paypal.com/ncp/payment/ARL7F5GXSJNDN",
+        inperson: "https://www.paypal.com/ncp/payment/E5ZZCW82CLQJN"
     }
 };
 
