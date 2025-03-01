@@ -162,3 +162,12 @@ orderButtons.forEach(orderButton => {
         }
     });
 });
+
+// Function to scroll to specific product section
+function scrollToProduct(productId) {
+    const element = document.getElementById(productId);
+    if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
