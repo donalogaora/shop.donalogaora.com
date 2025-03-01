@@ -1,5 +1,5 @@
 // Color selection logic for Phone Stand
-let selectedPhoneStandColor = 'black'; // Default color
+let selectedPhoneStandColor = null; // Initially no color is selected
 const phoneStandColorCircles = document.querySelectorAll('.circle');
 const phoneStandImageElement = document.getElementById('toggle-image');
 
@@ -53,7 +53,7 @@ function startPhoneStandCarousel() {
 }
 
 // Color selection logic for Soap Cradle
-let selectedSoapCradleColor = 'black'; // Default color
+let selectedSoapCradleColor = null; // Initially no color is selected
 const soapCradleColorCircles = document.querySelectorAll('.soap-circle');
 const soapCradleImageElement = document.getElementById('soap-toggle-image');
 
@@ -115,9 +115,9 @@ const orderButtons = document.querySelectorAll('.shop-order-button');
 orderButtons.forEach(orderButton => {
     orderButton.addEventListener('click', function() {
         let color;
-        if (orderButton.id === "shop-order-button") {
+        if (orderButton.id === "shop-order-button" && selectedPhoneStandColor) {
             color = selectedPhoneStandColor;
-        } else if (orderButton.id === "soap-order-button") {
+        } else if (orderButton.id === "soap-order-button" && selectedSoapCradleColor) {
             color = selectedSoapCradleColor;
         }
 
@@ -160,6 +160,7 @@ const paymentLinks = {
         delivery: "https://www.paypal.com/ncp/payment/NZ83GKRKY2XLY",
         inperson: "https://www.paypal.com/ncp/payment/QXZD8DFPEL6ME"
     },
+    // Adjusting these links to be for the Phone Stand (as indicated)
     meili_black: {
         delivery: "https://www.paypal.com/ncp/payment/CQX94FPFZKPPJ",
         inperson: "https://www.paypal.com/ncp/payment/CAQPPNUFQ52VE"
@@ -200,20 +201,4 @@ const paymentLinks = {
         delivery: "https://www.paypal.com/ncp/payment/TXSHBCPD65PS6",
         inperson: "https://www.paypal.com/ncp/payment/4C7T3CVJZ4PCQ"
     },
-    soap_red: {
-        delivery: "https://www.paypal.com/ncp/payment/TS7T8QRH67L64",
-        inperson: "https://www.paypal.com/ncp/payment/DZUVZQT96FFUA"
-    },
-    soap_orange: {
-        delivery: "https://www.paypal.com/ncp/payment/ARL7F5GXSJNDN",
-        inperson: "https://www.paypal.com/ncp/payment/E5ZZCW82CLQJN"
-    }
-};
-
-// Function to scroll to specific product section
-function scrollToProduct(productId) {
-    const element = document.getElementById(productId);
-    if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-    }
-}
+   
