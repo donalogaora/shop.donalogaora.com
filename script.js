@@ -35,12 +35,12 @@ startCarousel();
 // SOAP Image Carousel
 const soapImageElement = document.getElementById('soap-toggle-image');
 const soapImages = [
-    '../assets/shop/soap_black_3d_printed_phone_stand_preview.png',
-    '../assets/shop/soap_white_3d_printed_phone_stand_preview.png',
-    '../assets/shop/soap_space_grey_3d_printed_phone_stand_preview.png',
-    '../assets/shop/soap_blue_3d_printed_phone_stand_preview.png',
-    '../assets/shop/soap_red_3d_printed_phone_stand_preview.png',
-    '../assets/shop/soap_orange_3d_printed_phone_stand_preview.png'
+    '../assets/shop/black_aquadry_soap_cradle.png',
+    '../assets/shop/white_aquadry_soap_cradle.png',
+    '../assets/shop/space_grey_aquadry_soap_cradle.png',
+    '../assets/shop/blue_aquadry_soap_cradle.png',
+    '../assets/shop/red_aquadry_soap_cradle.png',
+    '../assets/shop/orange_aquadry_soap_cradle.png'
 ];
 let soapCurrentIndex = 0;
 let soapCarouselInterval; // Store the interval for the soap image carousel
@@ -82,7 +82,7 @@ colorCircles.forEach(circle => {
         selectedColor = circle.getAttribute('data-color');
         
         // Update the image source based on the color selected for phone stand
-        toggleImage.src = `/assets/shop/${selectedColor}_3d_printed_phone_stand_preview.jpg`;
+        toggleImage.src = `/assets/shop/${selectedColor}_3d_printed_phone_stand_preview.png`;
         
         // Stop the image carousel once a color is selected
         clearInterval(carouselInterval);  
@@ -101,7 +101,7 @@ soapColorCircles.forEach(circle => {
         selectedSoapColor = circle.getAttribute('data-color');
         
         // Update the image source based on the soap color selected
-        soapToggleImage.src = `/assets/shop/soap_${selectedSoapColor}_3d_printed_phone_stand_preview.jpg`;
+        soapToggleImage.src = `/assets/shop/soap_${selectedSoapColor}_aquadry_soap_cradle.png`;
         
         // Stop the image carousel once a soap color is selected
         clearInterval(soapCarouselInterval);  
