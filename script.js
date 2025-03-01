@@ -169,14 +169,18 @@ orderButtons.forEach(orderButton => {
     });
 });
 
-// Function to scroll to specific product section
-function scrollToProduct(productId) {
-    const element = document.getElementById(productId);
+// Function to scroll to a specific product section after the page is loaded
+window.addEventListener("load", function() {
+  const hash = window.location.hash;
+  if (hash) {
+    const element = document.querySelector(hash);
     if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: 'smooth' });
     }
-}
+  }
+});
 
+// Redirect to the products page and scroll to the section
 document.getElementById("soap-order-button").addEventListener("click", function() {
-  window.location.href = "https://shop.donalogaora.com/all-products";
+  window.location.href = "https://shop.donalogaora.com/all-products#aqua-dry-soap-cradle";
 });
