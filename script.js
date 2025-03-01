@@ -1,8 +1,6 @@
-// Shop Stuff
-
 // Phone Stand Image Fade
-const imageElement = document.getElementById('toggle-image');
-const images = [
+const phoneStandImageElement = document.getElementById('toggle-image');
+const phoneStandImages = [
     '../assets/shop/black_3d_printed_phone_stand_preview.png',
     '../assets/shop/white_3d_printed_phone_stand_preview.png',
     '../assets/shop/space_grey_3d_printed_phone_stand_preview.png',
@@ -10,29 +8,61 @@ const images = [
     '../assets/shop/red_3d_printed_phone_stand_preview.png',
     '../assets/shop/orange_3d_printed_phone_stand_preview.png'
 ];
-let currentIndex = 0;
-let carouselInterval; // Store the interval for the image carousel
-let isCarouselActive = true; // Track if the carousel is active
+let phoneStandCurrentIndex = 0;
+let phoneStandCarouselInterval;
+let phoneStandIsCarouselActive = true;
 
-// Function to start the carousel
-function startCarousel() {
-    if (isCarouselActive) {
-        carouselInterval = setInterval(() => {
-            imageElement.style.transition = "opacity 0.5s";  // Smooth fade transition
-            imageElement.style.opacity = 0;
+// Soap Cradle Image Fade
+const soapCradleImageElement = document.getElementById('soap-toggle-image');
+const soapCradleImages = [
+    '../assets/shop/black_aquadry_soap_cradle.png',
+    '../assets/shop/white_aquadry_soap_cradle.png',
+    '../assets/shop/space_aquadry_soap_cradle.png',
+    '../assets/shop/blue_aquadry_soap_cradle.png',
+    '../assets/shop/red_aquadry_soap_cradle.png',
+    '../assets/shop/orange_aquadry_soap_cradle.png'
+];
+let soapCradleCurrentIndex = 0;
+let soapCradleCarouselInterval;
+let soapCradleIsCarouselActive = true;
+
+// Function to start the phone stand carousel
+function startPhoneStandCarousel() {
+    if (phoneStandIsCarouselActive) {
+        phoneStandCarouselInterval = setInterval(() => {
+            phoneStandImageElement.style.transition = "opacity 0.5s";  // Smooth fade transition
+            phoneStandImageElement.style.opacity = 0;
 
             // After fade-out, change the image source and fade back in
             setTimeout(() => {
-                currentIndex = (currentIndex + 1) % images.length;
-                imageElement.src = images[currentIndex];
-                imageElement.style.opacity = 1;
+                phoneStandCurrentIndex = (phoneStandCurrentIndex + 1) % phoneStandImages.length;
+                phoneStandImageElement.src = phoneStandImages[phoneStandCurrentIndex];
+                phoneStandImageElement.style.opacity = 1;
             }, 50);  // Wait 50ms to fade out image before switching
         }, 1500); // Change image every 1.5 seconds
     }
 }
 
-// Start the carousel initially
-startCarousel();
+// Function to start the soap cradle carousel
+function startSoapCradleCarousel() {
+    if (soapCradleIsCarouselActive) {
+        soapCradleCarouselInterval = setInterval(() => {
+            soapCradleImageElement.style.transition = "opacity 0.5s";  // Smooth fade transition
+            soapCradleImageElement.style.opacity = 0;
+
+            // After fade-out, change the image source and fade back in
+            setTimeout(() => {
+                soapCradleCurrentIndex = (soapCradleCurrentIndex + 1) % soapCradleImages.length;
+                soapCradleImageElement.src = soapCradleImages[soapCradleCurrentIndex];
+                soapCradleImageElement.style.opacity = 1;
+            }, 50);  // Wait 50ms to fade out image before switching
+        }, 1500); // Change image every 1.5 seconds
+    }
+}
+
+// Start both carousels initially
+startPhoneStandCarousel();
+startSoapCradleCarousel();
 
 // Define delivery and in-person links for each color
 const paymentLinks = {
