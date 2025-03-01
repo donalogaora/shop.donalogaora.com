@@ -169,32 +169,6 @@ orderButtons.forEach(orderButton => {
     });
 });
 
-// Add click event listener for soap cradle purchase
-const soapOrderButtons = document.querySelectorAll('.soap-order-button');
-soapOrderButtons.forEach(soapOrderButton => {
-    soapOrderButton.addEventListener('click', function() {
-        // Get the color from the button's data-color attribute or from the selected circle
-        const colorFromButton = soapOrderButton.getAttribute('data-color');
-        const color = colorFromButton || selectedColor;
-
-        if (color) {
-            // Show a confirmation dialog to select delivery or in-person
-            const isDelivery = confirm("Do you want posted delivery? Click 'OK' for posted delivery, 'Cancel' for in-person delivery.");
-
-            // Determine the appropriate link based on the user's choice
-            const link = isDelivery 
-                ? paymentLinks[`soap_${color}`].delivery 
-                : paymentLinks[`soap_${color}`].inperson;
-
-            // Redirect to the chosen link
-            window.location.href = link;
-        } else {
-            // If no color is selected, prompt the user to select one
-            alert('Please select a color first!');
-        }
-    });
-});
-
 // Function to scroll to specific product section
 function scrollToProduct(productId) {
     const element = document.getElementById(productId);
