@@ -63,3 +63,87 @@ function startSoapCradleCarousel() {
 // Start both carousels initially
 startPhoneStandCarousel();
 startSoapCradleCarousel();
+
+// Define delivery and in-person links for each color
+const paymentLinks = {
+    black: {
+        delivery: "https://www.paypal.com/ncp/payment/G3UNG7URVGTSY",
+        inperson: "https://www.paypal.com/ncp/payment/VHL6BB6NFB5R8"
+    },
+    white: {
+        delivery: "https://www.paypal.com/ncp/payment/YDUY83NNRPYZE",
+        inperson: "https://www.paypal.com/ncp/payment/6XWV77VL9NZXC"
+    },
+    space_grey: {
+        delivery: "https://www.paypal.com/ncp/payment/JG62G4S9BN9F6",
+        inperson: "https://www.paypal.com/ncp/payment/A7J7T4JGBRKT6"
+    },
+    blue: {
+        delivery: "https://www.paypal.com/ncp/payment/TDQ26KXWKTNU8",
+        inperson: "https://www.paypal.com/ncp/payment/433RBJJS2VRQL"
+    },
+    red: {
+        delivery: "https://www.paypal.com/ncp/payment/FX2CVP3MKK78S",
+        inperson: "https://www.paypal.com/ncp/payment/NNH76WM8W9YLU"
+    },
+    orange: {
+        delivery: "https://www.paypal.com/ncp/payment/NZ83GKRKY2XLY",
+        inperson: "https://www.paypal.com/ncp/payment/QXZD8DFPEL6ME"
+    },
+    meili_black: {
+        delivery: "https://www.paypal.com/ncp/payment/CQX94FPFZKPPJ",
+        inperson: "https://www.paypal.com/ncp/payment/CAQPPNUFQ52VE"
+    },
+    meili_white: {
+        delivery: "https://www.paypal.com/ncp/payment/2UH2UQQZLL4UQ",
+        inperson: "https://www.paypal.com/ncp/payment/4FAX3LYRKRQGU"
+    },
+    meili_space_grey: {
+        delivery: "https://www.paypal.com/ncp/payment/DRAWCJUAVMQL4",
+        inperson: "https://www.paypal.com/ncp/payment/3UPT8XM9XURXC"
+    },
+    meili_blue: {
+        delivery: "https://www.paypal.com/ncp/payment/3MFR5SLXXCTHJ",
+        inperson: "https://www.paypal.com/ncp/payment/Y7F698E9N487S"
+    },
+    meili_red: {
+        delivery: "https://www.paypal.com/ncp/payment/VYH6PSMP3KWSL",
+        inperson: "https://www.paypal.com/ncp/payment/YPCWVBLY7PVQ2"
+    },
+    meili_orange: {
+        delivery: "https://www.paypal.com/ncp/payment/MYVK7KLVW5EMQ",
+        inperson: "https://www.paypal.com/ncp/payment/BTGY96QNA4TF8"
+    },
+    soap_black: {
+        delivery: "https://www.paypal.com/ncp/payment/ACWBJUEK4S8SW",
+        inperson: "https://www.paypal.com/ncp/payment/37WRLULFKHZWA"
+    },
+    soap_white: {
+        delivery: "https://www.paypal.com/ncp/payment/N2NPTQVLY3HZN",
+        inperson: "https://www.paypal.com/ncp/payment/JYNDV3SQPJBXQ"
+    },
+    soap_space_grey: {
+        delivery: "https://www.paypal.com/ncp/payment/GS2L84FKRDM9G",
+        inperson: "https://www.paypal.com/ncp/payment/UZMTHDNWZR2V6"
+    },
+    soap_blue: {
+        delivery: "https://www.paypal.com/ncp/payment/TXSHBCPD65PS6",
+        inperson: "https://www.paypal.com/ncp/payment/4C7T3CVJZ4PCQ"
+    },
+    soap_red: {
+        delivery: "https://www.paypal.com/ncp/payment/TS7T8QRH67L64",
+        inperson: "https://www.paypal.com/ncp/payment/DZUVZQT96FFUA"
+    },
+    soap_orange: {
+        delivery: "https://www.paypal.com/ncp/payment/ARL7F5GXSJNDN",
+        inperson: "https://www.paypal.com/ncp/payment/E5ZZCW82CLQJN"
+    }
+};
+
+// Function to scroll to specific product section
+function scrollToProduct(productId) {
+    const element = document.getElementById(productId);
+    if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+    }
+}
