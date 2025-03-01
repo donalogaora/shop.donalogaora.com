@@ -17,7 +17,7 @@ const soapCradleImageElement = document.getElementById('soap-toggle-image');
 const soapCradleImages = [
     '../assets/shop/black_aquadry_soap_cradle.png',
     '../assets/shop/white_aquadry_soap_cradle.png',
-    '../assets/shop/space_aquadry_soap_cradle.png',
+    '../assets/shop/space_grey_aquadry_soap_cradle.png',
     '../assets/shop/blue_aquadry_soap_cradle.png',
     '../assets/shop/red_aquadry_soap_cradle.png',
     '../assets/shop/orange_aquadry_soap_cradle.png'
