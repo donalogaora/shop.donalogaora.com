@@ -124,7 +124,7 @@ colorCircles.forEach(circle => {
         selectedColor = circle.getAttribute('data-color');
         
         // Update the image source based on the color selected
-        toggleImage.src = /assets/shop/${selectedColor}_3d_printed_phone_stand_preview.jpg;  // Static color image
+        toggleImage.src = `/assets/shop/${selectedColor}_3d_printed_phone_stand_preview.jpg`;  // Static color image
         
         // Stop the image carousel once a color is selected
         clearInterval(carouselInterval);  // Stop the carousel
@@ -170,3 +170,4 @@ function scrollToProduct(productId) {
         element.scrollIntoView({ behavior: 'smooth' });
     }
 }
+
