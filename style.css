@@ -438,7 +438,7 @@ colour-table {
     margin-right: 10px; /* Control spacing between price and button */
 }
 
-.shop-order-button {
+.shop-order-button, .soap-order-button {
     padding: 10px 20px; /* Adjust button padding */
     background-color: #ffcc00; /* Button background color */
     color: #253b80; /* Button text color */
@@ -451,6 +451,10 @@ colour-table {
 }
 
 .shop-order-button:hover {
+    background-color: #5d5d5d; /* Button hover color */
+}
+
+.soap-order-button:hover {
     background-color: #5d5d5d; /* Button hover color */
 }
 
