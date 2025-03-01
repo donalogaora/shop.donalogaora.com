@@ -461,7 +461,7 @@ colour-table {
     padding: 10px; /* Add some padding to prevent the circles from touching edges */
 }
 
-.circle {
+.circle, .soap-circle {
     width: 50px; /* Set the size of the circle */
     height: 50px; /* Set the size of the circle */
     border-radius: 50%; /* Make them circular */
@@ -601,7 +601,7 @@ colour-table {
         width: 90%; /* Take up 90% width on mobile screens */
         height: auto; /* Let height adjust naturally */
     }
-    .circle {
+    .circle, soap-circle {
         width: 40px; /* Slightly smaller circles for mobile */
         height: 40px;
     }
