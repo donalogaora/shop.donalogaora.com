@@ -1,5 +1,3 @@
-// Shop Stuff
-
 // Phone Stand Image Fade
 const imageElement = document.getElementById('toggle-image');
 const images = [
@@ -135,7 +133,7 @@ colorCircles.forEach(circle => {
         const selectedColor = circle.getAttribute('data-color');
         if (circle.getAttribute('data-product') === 'phone') {
             selectedPhoneColor = selectedColor;
-            phoneImageElement.src = `/assets/shop/${selectedColor}_3d_printed_phone_stand_preview.jpg`; // Update phone image
+            phoneImageElement.src = `/assets/shop/${selectedColor}_3d_printed_phone_stand_preview.png`; // Update phone image
             clearInterval(carouselInterval); // Stop carousel for phone
             isCarouselActive = false;
             phoneImageElement.style.opacity = 1; // Ensure the image is fully visible immediately
