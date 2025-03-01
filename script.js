@@ -176,3 +176,7 @@ function scrollToProduct(productId) {
         element.scrollIntoView({ behavior: 'smooth' });
     }
 }
+
+document.getElementById("soap-order-button").addEventListener("click", function() {
+  window.location.href = "https://shop.donalogaora.com/all-products";
+});
