@@ -1,32 +1,41 @@
-// Phone Stand Image Fade
+// Color selection logic for Phone Stand
+let selectedPhoneStandColor = 'black'; // Default color
+const phoneStandColorCircles = document.querySelectorAll('.circle');
 const phoneStandImageElement = document.getElementById('toggle-image');
-const phoneStandImages = [
-    '../assets/shop/black_3d_printed_phone_stand_preview.png',
-    '../assets/shop/white_3d_printed_phone_stand_preview.png',
-    '../assets/shop/space_grey_3d_printed_phone_stand_preview.png',
-    '../assets/shop/blue_3d_printed_phone_stand_preview.png',
-    '../assets/shop/red_3d_printed_phone_stand_preview.png',
-    '../assets/shop/orange_3d_printed_phone_stand_preview.png'
-];
+
+const phoneStandImages = {
+    black: '../assets/shop/black_3d_printed_phone_stand_preview.png',
+    white: '../assets/shop/white_3d_printed_phone_stand_preview.png',
+    space_grey: '../assets/shop/space_grey_3d_printed_phone_stand_preview.png',
+    blue: '../assets/shop/blue_3d_printed_phone_stand_preview.png',
+    red: '../assets/shop/red_3d_printed_phone_stand_preview.png',
+    orange: '../assets/shop/orange_3d_printed_phone_stand_preview.png'
+};
+
 let phoneStandCurrentIndex = 0;
 let phoneStandCarouselInterval;
 let phoneStandIsCarouselActive = true;
 
-// Soap Cradle Image Fade
-const soapCradleImageElement = document.getElementById('soap-toggle-image');
-const soapCradleImages = [
-    '../assets/shop/black_aquadry_soap_cradle.png',
-    '../assets/shop/white_aquadry_soap_cradle.png',
-    '../assets/shop/space_grey_aquadry_soap_cradle.png',
-    '../assets/shop/blue_aquadry_soap_cradle.png',
-    '../assets/shop/red_aquadry_soap_cradle.png',
-    '../assets/shop/orange_aquadry_soap_cradle.png'
-];
-let soapCradleCurrentIndex = 0;
-let soapCradleCarouselInterval;
-let soapCradleIsCarouselActive = true;
+// Color selection event for Phone Stand
+phoneStandColorCircles.forEach(circle => {
+    circle.addEventListener('click', () => {
+        selectedPhoneStandColor = circle.getAttribute('data-color');
+        phoneStandImageElement.src = phoneStandImages[selectedPhoneStandColor]; // Change the image based on selected color
+        
+        // Stop the carousel
+        clearInterval(phoneStandCarouselInterval);
+        phoneStandIsCarouselActive = false;
+        
+        // Ensure the image is visible immediately
+        phoneStandImageElement.style.opacity = 1;
 
-// Function to start the phone stand carousel
+        // Update the selected color circle
+        phoneStandColorCircles.forEach(c => c.classList.remove('selected'));
+        circle.classList.add('selected');
+    });
+});
+
+// Start the phone stand carousel
 function startPhoneStandCarousel() {
     if (phoneStandIsCarouselActive) {
         phoneStandCarouselInterval = setInterval(() => {
@@ -35,15 +44,52 @@ function startPhoneStandCarousel() {
 
             // After fade-out, change the image source and fade back in
             setTimeout(() => {
-                phoneStandCurrentIndex = (phoneStandCurrentIndex + 1) % phoneStandImages.length;
-                phoneStandImageElement.src = phoneStandImages[phoneStandCurrentIndex];
+                phoneStandCurrentIndex = (phoneStandCurrentIndex + 1) % Object.keys(phoneStandImages).length;
+                phoneStandImageElement.src = phoneStandImages[Object.keys(phoneStandImages)[phoneStandCurrentIndex]];
                 phoneStandImageElement.style.opacity = 1;
             }, 50);  // Wait 50ms to fade out image before switching
         }, 1500); // Change image every 1.5 seconds
     }
 }
 
-// Function to start the soap cradle carousel
+// Color selection logic for Soap Cradle
+let selectedSoapCradleColor = 'black'; // Default color
+const soapCradleColorCircles = document.querySelectorAll('.soap-circle');
+const soapCradleImageElement = document.getElementById('soap-toggle-image');
+
+const soapCradleImages = {
+    black: '../assets/shop/black_aquadry_soap_cradle.png',
+    white: '../assets/shop/white_aquadry_soap_cradle.png',
+    space_grey: '../assets/shop/space_grey_aquadry_soap_cradle.png',
+    blue: '../assets/shop/blue_aquadry_soap_cradle.png',
+    red: '../assets/shop/red_aquadry_soap_cradle.png',
+    orange: '../assets/shop/orange_aquadry_soap_cradle.png'
+};
+
+let soapCradleCurrentIndex = 0;
+let soapCradleCarouselInterval;
+let soapCradleIsCarouselActive = true;
+
+// Color selection event for Soap Cradle
+soapCradleColorCircles.forEach(circle => {
+    circle.addEventListener('click', () => {
+        selectedSoapCradleColor = circle.getAttribute('data-color');
+        soapCradleImageElement.src = soapCradleImages[selectedSoapCradleColor]; // Change the image based on selected color
+
+        // Stop the carousel
+        clearInterval(soapCradleCarouselInterval);
+        soapCradleIsCarouselActive = false;
+
+        // Ensure the image is visible immediately
+        soapCradleImageElement.style.opacity = 1;
+
+        // Update the selected color circle
+        soapCradleColorCircles.forEach(c => c.classList.remove('selected'));
+        circle.classList.add('selected');
+    });
+});
+
+// Start the soap cradle carousel
 function startSoapCradleCarousel() {
     if (soapCradleIsCarouselActive) {
         soapCradleCarouselInterval = setInterval(() => {
@@ -52,8 +98,8 @@ function startSoapCradleCarousel() {
 
             // After fade-out, change the image source and fade back in
             setTimeout(() => {
-                soapCradleCurrentIndex = (soapCradleCurrentIndex + 1) % soapCradleImages.length;
-                soapCradleImageElement.src = soapCradleImages[soapCradleCurrentIndex];
+                soapCradleCurrentIndex = (soapCradleCurrentIndex + 1) % Object.keys(soapCradleImages).length;
+                soapCradleImageElement.src = soapCradleImages[Object.keys(soapCradleImages)[soapCradleCurrentIndex]];
                 soapCradleImageElement.style.opacity = 1;
             }, 50);  // Wait 50ms to fade out image before switching
         }, 1500); // Change image every 1.5 seconds
@@ -63,6 +109,30 @@ function startSoapCradleCarousel() {
 // Start both carousels initially
 startPhoneStandCarousel();
 startSoapCradleCarousel();
+
+// Order button logic for both products
+const orderButtons = document.querySelectorAll('.shop-order-button');
+orderButtons.forEach(orderButton => {
+    orderButton.addEventListener('click', function() {
+        let color;
+        if (orderButton.id === "shop-order-button") {
+            color = selectedPhoneStandColor;
+        } else if (orderButton.id === "soap-order-button") {
+            color = selectedSoapCradleColor;
+        }
+
+        if (color) {
+            const isDelivery = confirm("Do you want posted delivery? Click 'OK' for posted delivery, 'Cancel' for in-person delivery.");
+            const link = isDelivery
+                ? paymentLinks[color].delivery
+                : paymentLinks[color].inperson;
+
+            window.location.href = link;
+        } else {
+            alert('Please select a color first!');
+        }
+    });
+});
 
 // Define delivery and in-person links for each color
 const paymentLinks = {
@@ -139,59 +209,6 @@ const paymentLinks = {
         inperson: "https://www.paypal.com/ncp/payment/E5ZZCW82CLQJN"
     }
 };
-
-// Color selection logic
-let selectedColor = ''; // Store the selected color
-
-// Select the color circles
-const colorCircles = document.querySelectorAll('.circle');
-const toggleImage = document.getElementById('toggle-image');
-
-// Loop through each color circle and add a click event listener
-colorCircles.forEach(circle => {
-    circle.addEventListener('click', () => {
-        // Get the data-color attribute value from the clicked circle
-        selectedColor = circle.getAttribute('data-color');
-        
-        // Update the image source based on the color selected
-        toggleImage.src = `/assets/shop/${selectedColor}_3d_printed_phone_stand_preview.jpg`;  // Static color image
-        
-        // Stop the image carousel once a color is selected
-        clearInterval(carouselInterval);  // Stop the carousel
-        isCarouselActive = false; // Set carousel as inactive
-        imageElement.style.opacity = 1;  // Ensure the image is fully visible immediately
-
-        // Update the selected circle styling
-        colorCircles.forEach(c => c.classList.remove('selected')); // Remove "selected" class from all circles
-        circle.classList.add('selected'); // Add "selected" class to the clicked circle
-    });
-});
-
-// Add click event listener to all order buttons
-const orderButtons = document.querySelectorAll('.shop-order-button');
-orderButtons.forEach(orderButton => {
-    orderButton.addEventListener('click', function() {
-        // Get the color from the button's data-color attribute or from the selected circle
-        const colorFromButton = orderButton.getAttribute('data-color');
-        const color = colorFromButton || selectedColor;
-
-        if (color) {
-            // Show a confirmation dialog to select delivery or in-person
-            const isDelivery = confirm("Do you want posted delivery? Click 'OK' for posted delivery, 'Cancel' for in-person delivery.");
-
-            // Determine the appropriate link based on the user's choice
-            const link = isDelivery 
-                ? paymentLinks[color].delivery 
-                : paymentLinks[color].inperson;
-
-            // Redirect to the chosen link
-            window.location.href = link;
-        } else {
-            // If no color is selected, prompt the user to select one
-            alert('Please select a color first!');
-        }
-    });
-});
 
 // Function to scroll to specific product section
 function scrollToProduct(productId) {
