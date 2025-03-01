@@ -96,12 +96,13 @@ colorCircles.forEach(circle => {
 });
 
 // Loop through each soap color circle and add a click event listener
+const soapColorCircles = document.querySelectorAll('.circle'); // Modify to target the correct color circles
 soapColorCircles.forEach(circle => {
     circle.addEventListener('click', () => {
         selectedSoapColor = circle.getAttribute('data-color');
         
         // Update the image source based on the soap color selected
-        soapToggleImage.src = `/assets/shop/soap_${selectedSoapColor}_aquadry_soap_cradle.png`;
+        soapImageElement.src = `/assets/shop/${selectedSoapColor}_aquadry_soap_cradle.png`;
         
         // Stop the image carousel once a soap color is selected
         clearInterval(soapCarouselInterval);  
