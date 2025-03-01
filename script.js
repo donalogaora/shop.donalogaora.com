@@ -1,6 +1,4 @@
-// Shop Stuff
-
-// Phone Stand Image Fade
+// Phone Stand Image Fade (existing)
 const imageElement = document.getElementById('toggle-image');
 const images = [
     '../assets/shop/black_3d_printed_phone_stand_preview.png',
@@ -14,7 +12,7 @@ let currentIndex = 0;
 let carouselInterval; // Store the interval for the image carousel
 let isCarouselActive = true; // Track if the carousel is active
 
-// Function to start the carousel
+// Function to start the carousel (for phone stand)
 function startCarousel() {
     if (isCarouselActive) {
         carouselInterval = setInterval(() => {
@@ -34,109 +32,124 @@ function startCarousel() {
 // Start the carousel initially
 startCarousel();
 
-// Color selection logic
-let selectedColor = ''; // Store the selected color
+// SOAP Image Carousel
+const soapImageElement = document.getElementById('soap-toggle-image');
+const soapImages = [
+    '../assets/shop/soap_black_3d_printed_phone_stand_preview.png',
+    '../assets/shop/soap_white_3d_printed_phone_stand_preview.png',
+    '../assets/shop/soap_space_grey_3d_printed_phone_stand_preview.png',
+    '../assets/shop/soap_blue_3d_printed_phone_stand_preview.png',
+    '../assets/shop/soap_red_3d_printed_phone_stand_preview.png',
+    '../assets/shop/soap_orange_3d_printed_phone_stand_preview.png'
+];
+let soapCurrentIndex = 0;
+let soapCarouselInterval; // Store the interval for the soap image carousel
+let isSoapCarouselActive = true; // Track if the soap carousel is active
 
-// Select the color circles
+// Function to start the soap carousel
+function startSoapCarousel() {
+    if (isSoapCarouselActive) {
+        soapCarouselInterval = setInterval(() => {
+            soapImageElement.style.transition = "opacity 0.5s";  // Smooth fade transition
+            soapImageElement.style.opacity = 0;
+
+            // After fade-out, change the image source and fade back in
+            setTimeout(() => {
+                soapCurrentIndex = (soapCurrentIndex + 1) % soapImages.length;
+                soapImageElement.src = soapImages[soapCurrentIndex];
+                soapImageElement.style.opacity = 1;
+            }, 50);  // Wait 50ms to fade out image before switching
+        }, 1500); // Change image every 1.5 seconds
+    }
+}
+
+// Start the soap carousel initially
+startSoapCarousel();
+
+// Color selection logic for Soap and Phone Stand
+let selectedColor = ''; // Store the selected color for phone stand
+let selectedSoapColor = ''; // Store the selected color for soap
+
+// Select the color circles for phone stand and soap
 const colorCircles = document.querySelectorAll('.circle');
+const soapColorCircles = document.querySelectorAll('.soap-circle');
 const toggleImage = document.getElementById('toggle-image');
+const soapToggleImage = document.getElementById('soap-toggle-image');
 
-// Loop through each color circle and add a click event listener
+// Loop through each color circle and add a click event listener for phone stand
 colorCircles.forEach(circle => {
     circle.addEventListener('click', () => {
-        // Get the data-color attribute value from the clicked circle
         selectedColor = circle.getAttribute('data-color');
         
-        // Update the image source based on the color selected
-        toggleImage.src = `/assets/shop/${selectedColor}_3d_printed_phone_stand_preview.jpg`;  // Static color image
+        // Update the image source based on the color selected for phone stand
+        toggleImage.src = `/assets/shop/${selectedColor}_3d_printed_phone_stand_preview.jpg`;
         
         // Stop the image carousel once a color is selected
-        clearInterval(carouselInterval);  // Stop the carousel
-        isCarouselActive = false; // Set carousel as inactive
-        imageElement.style.opacity = 1;  // Ensure the image is fully visible immediately
+        clearInterval(carouselInterval);  
+        isCarouselActive = false;
+        imageElement.style.opacity = 1;
 
         // Update the selected circle styling
-        colorCircles.forEach(c => c.classList.remove('selected')); // Remove "selected" class from all circles
-        circle.classList.add('selected'); // Add "selected" class to the clicked circle
+        colorCircles.forEach(c => c.classList.remove('selected')); 
+        circle.classList.add('selected');
     });
 });
 
-// Add click event listener to all order buttons
+// Loop through each soap color circle and add a click event listener
+soapColorCircles.forEach(circle => {
+    circle.addEventListener('click', () => {
+        selectedSoapColor = circle.getAttribute('data-color');
+        
+        // Update the image source based on the soap color selected
+        soapToggleImage.src = `/assets/shop/soap_${selectedSoapColor}_3d_printed_phone_stand_preview.jpg`;
+        
+        // Stop the image carousel once a soap color is selected
+        clearInterval(soapCarouselInterval);  
+        isSoapCarouselActive = false;
+        soapImageElement.style.opacity = 1;
+
+        // Update the selected circle styling
+        soapColorCircles.forEach(c => c.classList.remove('selected')); 
+        circle.classList.add('selected');
+    });
+});
+
+// Add click event listener to all order buttons (for phone stand)
 const orderButtons = document.querySelectorAll('.shop-order-button');
 orderButtons.forEach(orderButton => {
     orderButton.addEventListener('click', function() {
-        // Get the color from the button's data-color attribute or from the selected circle
         const colorFromButton = orderButton.getAttribute('data-color');
         const color = colorFromButton || selectedColor;
 
         if (color) {
-            // Show a confirmation dialog to select delivery or in-person
             const isDelivery = confirm("Do you want posted delivery? Click 'OK' for posted delivery, 'Cancel' for in-person delivery.");
-
-            // Determine the appropriate link based on the user's choice
-            const link = isDelivery 
-                ? paymentLinks[color].delivery 
-                : paymentLinks[color].inperson;
-
-            // Redirect to the chosen link
+            const link = isDelivery ? paymentLinks[color].delivery : paymentLinks[color].inperson;
             window.location.href = link;
         } else {
-            // If no color is selected, prompt the user to select one
             alert('Please select a color first!');
         }
     });
 });
 
-// Define delivery and in-person links for each color
-const paymentLinks = {
-    black: {
-        delivery: "https://www.paypal.com/ncp/payment/G3UNG7URVGTSY",
-        inperson: "https://www.paypal.com/ncp/payment/VHL6BB6NFB5R8"
-    },
-    white: {
-        delivery: "https://www.paypal.com/ncp/payment/YDUY83NNRPYZE",
-        inperson: "https://www.paypal.com/ncp/payment/6XWV77VL9NZXC"
-    },
-    space_grey: {
-        delivery: "https://www.paypal.com/ncp/payment/JG62G4S9BN9F6",
-        inperson: "https://www.paypal.com/ncp/payment/A7J7T4JGBRKT6"
-    },
-    blue: {
-        delivery: "https://www.paypal.com/ncp/payment/TDQ26KXWKTNU8",
-        inperson: "https://www.paypal.com/ncp/payment/433RBJJS2VRQL"
-    },
-    red: {
-        delivery: "https://www.paypal.com/ncp/payment/FX2CVP3MKK78S",
-        inperson: "https://www.paypal.com/ncp/payment/NNH76WM8W9YLU"
-    },
-    orange: {
-        delivery: "https://www.paypal.com/ncp/payment/NZ83GKRKY2XLY",
-        inperson: "https://www.paypal.com/ncp/payment/QXZD8DFPEL6ME"
-    },
-    meili_black: {
-        delivery: "https://www.paypal.com/ncp/payment/CQX94FPFZKPPJ",
-        inperson: "https://www.paypal.com/ncp/payment/CAQPPNUFQ52VE"
-    },
-    meili_white: {
-        delivery: "https://www.paypal.com/ncp/payment/2UH2UQQZLL4UQ",
-        inperson: "https://www.paypal.com/ncp/payment/4FAX3LYRKRQGU"
-    },
-    meili_space_grey: {
-        delivery: "https://www.paypal.com/ncp/payment/DRAWCJUAVMQL4",
-        inperson: "https://www.paypal.com/ncp/payment/3UPT8XM9XURXC"
-    },
-    meili_blue: {
-        delivery: "https://www.paypal.com/ncp/payment/3MFR5SLXXCTHJ",
-        inperson: "https://www.paypal.com/ncp/payment/Y7F698E9N487S"
-    },
-    meili_red: {
-        delivery: "https://www.paypal.com/ncp/payment/VYH6PSMP3KWSL",
-        inperson: "https://www.paypal.com/ncp/payment/YPCWVBLY7PVQ2"
-    },
-    meili_orange: {
-        delivery: "https://www.paypal.com/ncp/payment/MYVK7KLVW5EMQ",
-        inperson: "https://www.paypal.com/ncp/payment/BTGY96QNA4TF8"
-    },
+// Add click event listener to all order buttons (for soap)
+const soapOrderButtons = document.querySelectorAll('.soap-shop-order-button');
+soapOrderButtons.forEach(soapOrderButton => {
+    soapOrderButton.addEventListener('click', function() {
+        const soapColorFromButton = soapOrderButton.getAttribute('data-color');
+        const soapColor = soapColorFromButton || selectedSoapColor;
+
+        if (soapColor) {
+            const isDelivery = confirm("Do you want posted delivery? Click 'OK' for posted delivery, 'Cancel' for in-person delivery.");
+            const link = isDelivery ? soapPaymentLinks[soapColor].delivery : soapPaymentLinks[soapColor].inperson;
+            window.location.href = link;
+        } else {
+            alert('Please select a soap color first!');
+        }
+    });
+});
+
+// Define delivery and in-person links for each soap color
+const soapPaymentLinks = {
     soap_black: {
         delivery: "https://www.paypal.com/ncp/payment/ACWBJUEK4S8SW",
         inperson: "https://www.paypal.com/ncp/payment/37WRLULFKHZWA"
