@@ -140,6 +140,59 @@ const paymentLinks = {
     }
 };
 
+// Color selection logic
+let selectedColor = ''; // Store the selected color
+
+// Select the color circles
+const colorCircles = document.querySelectorAll('.circle');
+const toggleImage = document.getElementById('toggle-image');
+
+// Loop through each color circle and add a click event listener
+colorCircles.forEach(circle => {
+    circle.addEventListener('click', () => {
+        // Get the data-color attribute value from the clicked circle
+        selectedColor = circle.getAttribute('data-color');
+        
+        // Update the image source based on the color selected
+        toggleImage.src = `/assets/shop/${selectedColor}_3d_printed_phone_stand_preview.jpg`;  // Static color image
+        
+        // Stop the image carousel once a color is selected
+        clearInterval(carouselInterval);  // Stop the carousel
+        isCarouselActive = false; // Set carousel as inactive
+        imageElement.style.opacity = 1;  // Ensure the image is fully visible immediately
+
+        // Update the selected circle styling
+        colorCircles.forEach(c => c.classList.remove('selected')); // Remove "selected" class from all circles
+        circle.classList.add('selected'); // Add "selected" class to the clicked circle
+    });
+});
+
+// Add click event listener to all order buttons
+const orderButtons = document.querySelectorAll('.shop-order-button');
+orderButtons.forEach(orderButton => {
+    orderButton.addEventListener('click', function() {
+        // Get the color from the button's data-color attribute or from the selected circle
+        const colorFromButton = orderButton.getAttribute('data-color');
+        const color = colorFromButton || selectedColor;
+
+        if (color) {
+            // Show a confirmation dialog to select delivery or in-person
+            const isDelivery = confirm("Do you want posted delivery? Click 'OK' for posted delivery, 'Cancel' for in-person delivery.");
+
+            // Determine the appropriate link based on the user's choice
+            const link = isDelivery 
+                ? paymentLinks[color].delivery 
+                : paymentLinks[color].inperson;
+
+            // Redirect to the chosen link
+            window.location.href = link;
+        } else {
+            // If no color is selected, prompt the user to select one
+            alert('Please select a color first!');
+        }
+    });
+});
+
 // Function to scroll to specific product section
 function scrollToProduct(productId) {
     const element = document.getElementById(productId);
