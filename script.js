@@ -1,176 +1,207 @@
-// Phone Stand Image Fade
-const phoneStandImageElement = document.getElementById('toggle-image');
-const phoneStandImages = [
-    '../assets/shop/black_3d_printed_phone_stand_preview.png',
-    '../assets/shop/white_3d_printed_phone_stand_preview.png',
-    '../assets/shop/space_grey_3d_printed_phone_stand_preview.png',
-    '../assets/shop/blue_3d_printed_phone_stand_preview.png',
-    '../assets/shop/red_3d_printed_phone_stand_preview.png',
-    '../assets/shop/orange_3d_printed_phone_stand_preview.png'
-];
-let phoneStandCurrentIndex = 0;
-let phoneStandCarouselInterval;
-let phoneStandIsCarouselActive = true;
+// ==============================
+// Dynamic Image + Carousel Setup
+// ==============================
 
-// Soap Cradle Image Fade
-const soapCradleImageElement = document.getElementById('soap-toggle-image');
-const soapCradleImages = [
-    '../assets/shop/black_aquadry_soap_cradle.png',
-    '../assets/shop/white_aquadry_soap_cradle.png',
-    '../assets/shop/space_grey_aquadry_soap_cradle.png',
-    '../assets/shop/blue_aquadry_soap_cradle.png',
-    '../assets/shop/red_aquadry_soap_cradle.png',
-    '../assets/shop/orange_aquadry_soap_cradle.png'
-];
-let soapCradleCurrentIndex = 0;
-let soapCradleCarouselInterval;
-let soapCradleIsCarouselActive = true;
-
-// Function to start the phone stand carousel
-function startPhoneStandCarousel() {
-    if (phoneStandIsCarouselActive) {
-        phoneStandCarouselInterval = setInterval(() => {
-            phoneStandImageElement.style.transition = "opacity 0.5s";  // Smooth fade transition
-            phoneStandImageElement.style.opacity = 0;
-
-            // After fade-out, change the image source and fade back in
-            setTimeout(() => {
-                phoneStandCurrentIndex = (phoneStandCurrentIndex + 1) % phoneStandImages.length;
-                phoneStandImageElement.src = phoneStandImages[phoneStandCurrentIndex];
-                phoneStandImageElement.style.opacity = 1;
-            }, 50);  // Wait 50ms to fade out image before switching
-        }, 1500); // Change image every 1.5 seconds
-    }
-}
-
-// Function to start the soap cradle carousel
-function startSoapCradleCarousel() {
-    if (soapCradleIsCarouselActive) {
-        soapCradleCarouselInterval = setInterval(() => {
-            soapCradleImageElement.style.transition = "opacity 0.5s";  // Smooth fade transition
-            soapCradleImageElement.style.opacity = 0;
-
-            // After fade-out, change the image source and fade back in
-            setTimeout(() => {
-                soapCradleCurrentIndex = (soapCradleCurrentIndex + 1) % soapCradleImages.length;
-                soapCradleImageElement.src = soapCradleImages[soapCradleCurrentIndex];
-                soapCradleImageElement.style.opacity = 1;
-            }, 50);  // Wait 50ms to fade out image before switching
-        }, 1500); // Change image every 1.5 seconds
-    }
-}
-
-// Start both carousels initially
-startPhoneStandCarousel();
-startSoapCradleCarousel();
-
-// Define delivery and in-person links for each color
-const paymentLinks = {
-    black: {
-        delivery: "https://www.paypal.com/ncp/payment/G3UNG7URVGTSY",
-        inperson: "https://www.paypal.com/ncp/payment/VHL6BB6NFB5R8"
-    },
-    white: {
-        delivery: "https://www.paypal.com/ncp/payment/YDUY83NNRPYZE",
-        inperson: "https://www.paypal.com/ncp/payment/6XWV77VL9NZXC"
-    },
-    space_grey: {
-        delivery: "https://www.paypal.com/ncp/payment/JG62G4S9BN9F6",
-        inperson: "https://www.paypal.com/ncp/payment/A7J7T4JGBRKT6"
-    },
-    blue: {
-        delivery: "https://www.paypal.com/ncp/payment/TDQ26KXWKTNU8",
-        inperson: "https://www.paypal.com/ncp/payment/433RBJJS2VRQL"
-    },
-    red: {
-        delivery: "https://www.paypal.com/ncp/payment/FX2CVP3MKK78S",
-        inperson: "https://www.paypal.com/ncp/payment/NNH76WM8W9YLU"
-    },
-    orange: {
-        delivery: "https://www.paypal.com/ncp/payment/NZ83GKRKY2XLY",
-        inperson: "https://www.paypal.com/ncp/payment/QXZD8DFPEL6ME"
-    },
-    soap_black: {
-        delivery: "https://www.paypal.com/ncp/payment/ACWBJUEK4S8SW",
-        inperson: "https://www.paypal.com/ncp/payment/37WRLULFKHZWA"
-    },
-    soap_white: {
-        delivery: "https://www.paypal.com/ncp/payment/N2NPTQVLY3HZN",
-        inperson: "https://www.paypal.com/ncp/payment/JYNDV3SQPJBXQ"
-    },
-    soap_space_grey: {
-        delivery: "https://www.paypal.com/ncp/payment/GS2L84FKRDM9G",
-        inperson: "https://www.paypal.com/ncp/payment/UZMTHDNWZR2V6"
-    },
-    soap_blue: {
-        delivery: "https://www.paypal.com/ncp/payment/TXSHBCPD65PS6",
-        inperson: "https://www.paypal.com/ncp/payment/4C7T3CVJZ4PCQ"
-    },
-    soap_red: {
-        delivery: "https://www.paypal.com/ncp/payment/TS7T8QRH67L64",
-        inperson: "https://www.paypal.com/ncp/payment/DZUVZQT96FFUA"
-    },
-    soap_orange: {
-        delivery: "https://www.paypal.com/ncp/payment/ARL7F5GXSJNDN",
-        inperson: "https://www.paypal.com/ncp/payment/E5ZZCW82CLQJN"
-    }
+const productImages = {
+  '1A': [
+    '/assets/shop/black_universal_phone_stand.webp',
+    '/assets/shop/white_universal_phone_stand.webp',
+    '/assets/shop/space_grey_universal_phone_stand.webp',
+    '/assets/shop/dark_blue_universal_phone_stand.webp',
+    '/assets/shop/red_universal_phone_stand.webp',
+    '/assets/shop/orange_universal_phone_stand.webp'
+  ],
+  '2A': [
+    '/assets/shop/black_aquadry_soap_cradle.webp',
+    '/assets/shop/white_aquadry_soap_cradle.webp',
+    '/assets/shop/space_grey_aquadry_soap_cradle.webp',
+    '/assets/shop/dark_blue_aquadry_soap_cradle.webp',
+    '/assets/shop/red_aquadry_soap_cradle.webp',
+    '/assets/shop/orange_aquadry_soap_cradle.webp'
+  ],
+  '3A': [
+    '/assets/shop/black_securefit_hose-arm_clip_adapter_for_miele_wide_upholstery_nozzle.webp',
+    '/assets/shop/white_securefit_hose-arm_clip_adapter_for_miele_wide_upholstery_nozzle.webp',
+    '/assets/shop/space_grey_securefit_hose-arm_clip_adapter_for_miele_wide_upholstery_nozzle.webp',
+    '/assets/shop/dark_blue_securefit_hose-arm_clip_adapter_for_miele_wide_upholstery_nozzle.webp',
+    '/assets/shop/red_securefit_hose-arm_clip_adapter_for_miele_wide_upholstery_nozzle.webp',
+    '/assets/shop/orange_securefit_hose-arm_clip_adapter_for_miele_wide_upholstery_nozzle.webp'
+  ]
+  // Add more productId/image arrays here
 };
 
-// Color selection logic
-let selectedColor = ''; // Store the selected color
+const productCarousels = {};
 
-// Select the color circles for phone stand
-const colorCircles = document.querySelectorAll('.circle');
-const toggleImage = document.getElementById('toggle-image');
+// Initialize carousel data
+for (const productId in productImages) {
+  productCarousels[productId] = {
+    images: productImages[productId],
+    index: 0,
+    isActive: true
+  };
+}
 
-// Loop through each color circle and add a click event listener
-colorCircles.forEach(circle => {
+function startCarousel(productId) {
+  const carouselData = productCarousels[productId];
+  if (!carouselData || !carouselData.isActive) return;
+
+  const carouselDiv = document.querySelector(`.carousel[data-product-id="${productId}"]`);
+  const [imgA, imgB] = carouselDiv.querySelectorAll('img');
+
+  let showingFirst = true;
+
+  carouselData.interval = setInterval(() => {
+    const nextIndex = (carouselData.index + 1) % carouselData.images.length;
+    const nextSrc = carouselData.images[nextIndex];
+
+    const fadeOutImg = showingFirst ? imgA : imgB;
+    const fadeInImg = showingFirst ? imgB : imgA;
+
+    fadeInImg.src = nextSrc;
+    fadeInImg.style.opacity = 0;
+    fadeInImg.onload = () => {
+      fadeInImg.style.zIndex = 2;
+      fadeOutImg.style.zIndex = 1;
+      fadeInImg.style.opacity = 1;
+      fadeOutImg.style.opacity = 0;
+
+      carouselData.index = nextIndex;
+      showingFirst = !showingFirst;
+    };
+
+    fadeInImg.onerror = () => {
+      console.warn(`Failed to load: ${nextSrc}`);
+    };
+  }, 2500); // Adjust speed here
+}
+
+
+// ==============================
+// Initialize Carousels
+// ==============================
+
+document.querySelectorAll('.shop-card').forEach(card => {
+  const productId = card.getAttribute('data-product-id');
+  const imageElement = card.querySelector('.shop-card-image');
+  const images = productImages[productId];
+  // Preload all carousel images for this product
+  images.forEach(src => {
+    const img = new Image();
+    img.src = src;
+  });
+
+
+  if (!images || !imageElement) return;
+
+  productCarousels[productId] = {
+    index: 0,
+    isActive: true,
+    interval: null,
+    images,
+    imageElement
+  };
+
+  imageElement.setAttribute('id', `product-image-${productId}`); // Assign dynamic ID
+  startCarousel(productId, imageElement);
+});
+
+// ==============================
+// Handle Color Selections
+// ==============================
+
+document.querySelectorAll('.circle-container').forEach(container => {
+  const productId = container.getAttribute('data-product-id');
+  const carousel = productCarousels[productId];
+  if (!carousel) return;
+
+  const imageElement = carousel.imageElement;
+
+  container.querySelectorAll('.circle').forEach(circle => {
     circle.addEventListener('click', () => {
-        // Get the data-color attribute value from the clicked circle
-        selectedColor = circle.getAttribute('data-color');
-        
-        // Update the image source based on the color selected
-        toggleImage.src = `/assets/shop/${selectedColor}_3d_printed_phone_stand_preview.png`;  // Static color image
-        
-        // Stop the image carousel once a color is selected
-        clearInterval(phoneStandCarouselInterval);  // Stop the carousel for phone stand
-        phoneStandIsCarouselActive = false; // Set carousel as inactive
-        phoneStandImageElement.style.opacity = 1;  // Ensure the image is fully visible immediately
+      const selectedColor = circle.getAttribute('data-color');
+      let imagePath;
 
-        // Update the selected circle styling
-        colorCircles.forEach(c => c.classList.remove('selected')); // Remove "selected" class from all circles
-        circle.classList.add('selected'); // Add "selected" class to the clicked circle
+      if (productId === '1A') {
+        imagePath = `/assets/shop/${selectedColor}universal_phone_stand.webp`;
+      } else if (productId === '2A') {
+        imagePath = `/assets/shop/${selectedColor}_aquadry_soap_cradle.webp`;
+      } else if (productId === '3A') {
+        imagePath = `/assets/shop/${selectedColor}_securefit_hose-arm_clip_adapter_for_miele_wide_upholstery_nozzle.webp`;
+      } else {
+        // fallback or error
+      }
+
+      imageElement.src = imagePath;
+
+      clearInterval(carousel.interval);
+      carousel.isActive = false;
+      imageElement.style.opacity = 1;
+      imageElement.setAttribute('data-selected-color', selectedColor);
+
+      container.querySelectorAll('.circle').forEach(c => c.classList.remove('selected'));
+      circle.classList.add('selected');
     });
+  });
 });
 
-// Add click event listener to all order buttons for phone stand
-const orderButtons = document.querySelectorAll('.shop-order-button');
-orderButtons.forEach(orderButton => {
-    orderButton.addEventListener('click', function() {
-        // Get the color from the button's data-color attribute or from the selected circle
-        const colorFromButton = orderButton.getAttribute('data-color');
-        const color = colorFromButton || selectedColor;
+// ==============================
+// Add to Cart (Per Product)
+// ==============================
 
-        if (color) {
-            // Show a confirmation dialog to select delivery or in-person
-            const isDelivery = confirm("Do you want posted delivery? Click 'OK' for posted delivery, 'Cancel' for in-person delivery.");
+document.querySelectorAll('.shop-order-button').forEach(orderButton => {
+  orderButton.addEventListener('click', function () {
+    const productId = orderButton.getAttribute('data-product-id');
+    const imageElement = document.querySelector(`#product-image-${productId}`);
+    const color = imageElement?.getAttribute('data-selected-color');
 
-            // Determine the appropriate link based on the user's choice
-            const link = isDelivery 
-                ? paymentLinks[color].delivery 
-                : paymentLinks[color].inperson;
+    if (!color) {
+      alert('Please select a color first!');
+      return;
+    }
 
-            // Redirect to the chosen link
-            window.location.href = link;
-        } else {
-            // If no color is selected, prompt the user to select one
-            alert('Please select a color first!');
-        }
-    });
+    const productName = getProductField(productId, 'product_name') || 'Unnamed Product';
+    const price = parseFloat(getProductField(productId, 'price')) || 0;
+    const formattedColor = color.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+    let imagePath;
+    if (productId === '1A') {
+      imagePath = `/assets/shop/${color}universal_phone_stand.webp`;
+    } else if (productId === '2A') {
+      imagePath = `/assets/shop/${color}_aquadry_soap_cradle.webp`;
+    } else if (productId === '3A') {
+      imagePath = `/assets/shop/${color}_securefit_hose-arm_clip_adapter_for_miele_wide_upholstery_nozzle.webp`;
+    } else {
+      // fallback or error
+    }
+
+    const cartItem = {
+      id: productId,
+      name: productName,
+      color: formattedColor,
+      price: price,
+      qty: 1,
+      image: imagePath
+    };
+
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const existingIndex = cart.findIndex(item => item.id === productId && item.color === formattedColor);
+
+    if (existingIndex > -1) {
+      cart[existingIndex].qty += 1;
+    } else {
+      cart.push(cartItem);
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartNav();
+    alert(`${formattedColor} ${productName} added to cart!`);
+  });
 });
 
-// Function to scroll to a specific product section after the page is loaded
-window.addEventListener("load", function() {
+// ==============================
+// Utility + Misc (Same as Before)
+// ==============================
+
+window.addEventListener("load", function () {
   const hash = window.location.hash;
   if (hash) {
     const element = document.querySelector(hash);
@@ -180,7 +211,78 @@ window.addEventListener("load", function() {
   }
 });
 
-// Redirect to the products page and scroll to the section
-document.getElementById("soap-order-button").addEventListener("click", function() {
-  window.location.href = "https://shop.donalogaora.com/all-products#aqua-dry-soap-cradle";
+document.querySelectorAll(".soap-order-button").forEach(button => {
+  button.addEventListener("click", () => {
+    window.location.href = "https://shop.donalogaora.com/all-products#aqua-dry-soap-cradle";
+  });
 });
+
+const cartNavItem = document.getElementById('cart-nav-item');
+const cartCountSpan = document.getElementById('cart-count');
+
+function updateCartNav() {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+
+  if (totalQty > 0) {
+    cartCountSpan.textContent = totalQty;
+    cartNavItem.style.display = 'list-item';
+  } else {
+    cartNavItem.style.display = 'none';
+  }
+}
+
+updateCartNav();
+document.getElementById('cart-nav-item').classList.remove('hidden');
+document.getElementById('cart-count').textContent = 2;
+
+// ==============================
+// Product Info Fetching
+// ==============================
+
+const DATA_URL = "https://script.google.com/macros/s/AKfycbz8LydxCL8AZclrYOXVbQjCVcWtp3rzAWNct-tI0Sf2ZNz_j7Zu3invgYMoHEMANlVv/exec?all=true";
+const productsData = {};
+
+function normalizeKey(str) {
+  return str.toLowerCase().replace(/\s+/g, "_");
+}
+
+function getProductField(id, field) {
+  const product = productsData[id.toLowerCase()];
+  if (!product) return null;
+  return product[normalizeKey(field)] ?? null;
+}
+
+function updateDomFields() {
+  const elems = document.querySelectorAll("[data-product-id][data-field]");
+  elems.forEach(elem => {
+    const id = elem.getAttribute("data-product-id");
+    const field = elem.getAttribute("data-field");
+    const value = getProductField(id, field);
+    if (value !== null) {
+      elem.textContent = field.toLowerCase() === 'price' ? `€${value}` : value;
+    }
+  });
+}
+
+function fetchAllProducts() {
+  fetch(DATA_URL)
+    .then(res => res.json())
+    .then(flatData => {
+      for (const [flatKey, value] of Object.entries(flatData)) {
+        const [id, ...rest] = flatKey.split("_");
+        const keyRaw = rest.join("_");
+        const key = normalizeKey(keyRaw);
+        const idNormalized = id.toLowerCase();
+
+        if (!productsData[idNormalized]) productsData[idNormalized] = {};
+        productsData[idNormalized][key] = value;
+      }
+
+      console.log("All products loaded:", productsData);
+      updateDomFields();
+    })
+    .catch(err => console.error("Failed to load products:", err));
+}
+
+document.addEventListener("DOMContentLoaded", fetchAllProducts);

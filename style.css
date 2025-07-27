@@ -1,4 +1,3 @@
-/* Base Styles */
 html, body {
   height: 100%;
   width: 100%;
@@ -237,16 +236,33 @@ colour-table {
   /*box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow effect */
 /*}*/
 
+/* Hide elements with the hidden class */
+.hidden {
+  display: none !important;
+}
+
+#cart-nav-item {
+  width: auto;
+}
+
+/* Ensure all nav items use consistent layout */
 .nav-list {
-  list-style-type: none;
+  display: flex;
+  flex-direction: row-reverse;
+  list-style: none;
+  padding: 0;
   margin: 0;
-  padding: 0 20px;
-  overflow: hidden;
-  text-align: right;
+  gap: 10px;
+  align-items: center;
 }
 
 .nav-list li {
   display: inline-block;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
 }
 
 .nav-link, .page-button {
@@ -395,6 +411,7 @@ colour-table {
     -webkit-text-stroke: 1px #24252b; /* Outline effect */
     text-align: center; /* Center the text horizontally */
     margin: 10px 0; /* Space around the title */
+    padding: 0 20px; /* Add space on left and right */
 }
 
 .shop-card-description {
@@ -435,7 +452,6 @@ colour-table {
     font-weight: bold !important; /* Force bold text */
     color: #6e6d68; /* Transparent fill color */
     -webkit-text-stroke: 1px #24252b; /* Outline effect */
-    text-transform: uppercase; /* Uppercase text */
     margin-right: 10px; /* Control spacing between price and button */
 }
 
@@ -532,7 +548,7 @@ colour-table {
     font-weight: bold; /* Bold text */
     color: #6e6d68; /* Transparent fill color */
     -webkit-text-stroke: 1px #24252b; /* Outline effect */
-    text-transform: uppercase; /* Uppercase text */
+    /*text-transform: uppercase;*/ /* Uppercase text */
     margin-right: 10px; /* Add spacing between price and button */
 }
 
@@ -610,4 +626,40 @@ colour-table {
         width: 40px; /* Slightly smaller circles for mobile */
         height: 40px;
     }
+}
+
+.carousel {
+  position: relative;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+
+.carousel img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: opacity 0.6s ease-in-out;
+  opacity: 0;
+  z-index: 0;
+}
+
+.carousel img:first-child {
+  opacity: 1;
+  z-index: 1;
+}
+
+/*cart-button sticky*/
+#sticky-cart-container {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+}
+
+#sticky-cart-container.hidden {
+  display: none;
 }
