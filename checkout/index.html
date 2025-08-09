@@ -159,7 +159,7 @@
       }
       /* Hover effect on T&C text */
       .footer-tc-text:hover {
-        color: #24252b; /* color change on hover */
+        color: #24252b; /* Color change on hover */
       }
       /* Shop T&C Text Style */
       .shop-tc-text {
@@ -172,7 +172,7 @@
       }
       /* Hover effect for Shop T&C text */
       .shop-tc-text:hover {
-        color: #24252b; /* color change on hover */
+        color: #24252b; /* Color change on hover */
       }
       /* Links style */
       .t7c-links {
@@ -327,14 +327,14 @@
           style="
             font-weight: bold;
             font-size: 18px;
-            colour: #6e6d68;
+            color: #6e6d68;
             -webkit-text-stroke: 1px #24252b;
             margin: 10px 0;
           "
         ></ul>
         <p class="cart-total-label">Total: €<span>0.00</span></p>
         <p class="cart-postage-label">
-          Note: Maximum of 3 items per product category, regardless of colour or variation.<br><br>Postage will be calculated during the payment process. It is based on product type and may be higher than expected; however, any unused postage costs will be refunded shortly.
+          Note: Maximum of 3 items per product category, regardless of color or variation.<br><br>Postage will be calculated during the payment process. It is based on product type and may be higher than expected; however, any unused postage costs will be refunded shortly.
         </p>
       </div>
       <div id="paypal-button-container"></div>
@@ -375,7 +375,7 @@
           cart.forEach(item => {
             const li = document.createElement('li');
             li.innerHTML = `
-              <img src="${item.image || ''}" alt="${item.name} - ${item.colour}">
+              <img src="${item.image || ''}" alt="${item.name} - ${item.color}">
               <div class="item-details">
                 <div class="product-description-bold">${item.name}</div>
                 <div class="product-description" style="
@@ -384,7 +384,7 @@
                   color: #6e6d68;
                   -webkit-text-stroke: 0.7px #24252b;
                   margin: 10px 0;
-                ">colour: ${item.colour}</div>
+                ">Colour: ${item.color}</div>
                 <div class="product-description" style="
                   font-weight: bold;
                   font-size: 15px;
@@ -393,7 +393,7 @@
                   margin: 10px 0;
                 ">Price: €${item.price.toFixed(2)} x ${item.qty}</div>
               </div>
-              <button class="remove-btn" data-id="${item.id}" data-colour="${item.colour}">Remove</button>
+              <button class="remove-btn" data-id="${item.id}" data-color="${item.color}">Remove</button>
             `;
             cartItemsContainer.appendChild(li);
             subtotal += item.price * item.qty;
@@ -408,10 +408,10 @@
         document.getElementById('cart-items').addEventListener('click', (event) => {
           if (event.target.classList.contains('remove-btn')) {
             const id = event.target.getAttribute('data-id');
-            const colour = event.target.getAttribute('data-colour');
+            const color = event.target.getAttribute('data-color');
         
             // Find the item index
-            const index = cart.findIndex(item => item.id === id && item.colour === colour);
+            const index = cart.findIndex(item => item.id === id && item.color === color);
             if (index > -1) {
               if (cart[index].qty > 1) {
                 cart[index].qty -= 1;  // Just reduce qty by 1
@@ -429,8 +429,7 @@
           createOrder: function(data, actions) {
             const orderItems = cart.map(item => ({
               productId: item.id,
-              quantity: item.qty,
-              colour: item.colour
+              quantity: item.qty
             }));
       
             return fetch(`${BACKEND_URL}/api/create-order`, {
