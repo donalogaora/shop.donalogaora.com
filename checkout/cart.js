@@ -2,7 +2,7 @@
   // Add an item to the cart and store it
   function addToCart(name, color, price) {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    cart.push({ name, color, price });
+    cart.push({ name, colour, price });
     localStorage.setItem('cart', JSON.stringify(cart));
     alert(`${name} (${color}) added to cart.`);
   }
