@@ -475,20 +475,28 @@ colour-table {
     background-color: #5d5d5d; /* Button hover color */
 }
 
-.circle-container {
+.circle-container { 
     display: flex;
-    justify-content: space-between; /* Space out the circles evenly */
-    width: 100%; /* Make sure it takes the full width */
-    padding: 10px; /* Add some padding to prevent the circles from touching edges */
+    justify-content: space-evenly; /* Space out the circles evenly */
+    width: 100%; /* Full width of container */
+    padding: 10px; /* Add padding */
 }
 
-.circle, .soap-circle {
+/* Circles for Second Box */
+.circle { 
     width: 50px; /* Set the size of the circle */
     height: 50px; /* Set the size of the circle */
     border-radius: 50%; /* Make them circular */
     border: 2px solid #24252b; /* Border for unselected circles */
     transition: border-color 0.3s; /* Smooth transition on hover/selection */
-    cursor: pointer; /* Make the cursor pointer when hovering */
+    cursor: pointer; /* Make the cursor pointer on hover */
+}
+
+.circle-break {
+  flex-basis: 100%;             /* Take full row */
+  height: 0;                    /* No vertical space */
+  margin: 0;                    /* No unintended spacing */
+  padding: 0;
 }
 
 /* Remove the hover effect */
@@ -638,4 +646,19 @@ colour-table {
 
 #sticky-cart-container.hidden {
   display: none;
+}
+
+.remove-selection-btn {
+  background: #c62828;
+  color: white !important;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  height: 32px;
+  margin: 12px auto 0; /* top margin 12px, auto left/right for centering */
+  display: block;      /* make it block-level to apply auto margins */
+  -webkit-text-stroke: 0; /* REMOVE any stroke */
+  text-stroke: 0;
 }

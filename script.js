@@ -7,25 +7,61 @@ const productImages = {
     '/assets/shop/black_universal_phone_stand.webp',
     '/assets/shop/white_universal_phone_stand.webp',
     '/assets/shop/space_grey_universal_phone_stand.webp',
+    //'/assets/shop/grey_universal_phone_stand.webp',
+    //'/assets/shop/clear_universal_phone_stand.webp',
+    '/assets/shop/neon_green_universal_phone_stand.webp',
+    //'/assets/shop/sea_green_universal_phone_stand.webp',
     '/assets/shop/dark_blue_universal_phone_stand.webp',
+    '/assets/shop/sky_blue_universal_phone_stand.webp',
+    //'/assets/shop/purple_universal_phone_stand.webp',
+    //'/assets/shop/pink_universal_phone_stand.webp',
     '/assets/shop/red_universal_phone_stand.webp',
-    '/assets/shop/orange_universal_phone_stand.webp'
+    '/assets/shop/orange_universal_phone_stand.webp',
+    //'/assets/shop/yellow_universal_phone_stand.webp',
+    //'/assets/shop/brown_universal_phone_stand.webp',
+    //'/assets/shop/wood_colour_universal_phone_stand.webp',
+    '/assets/shop/beige_universal_phone_stand.webp'
   ],
   '2A': [
+    '/assets/shop/beige_aquadry_soap_cradle.webp',
     '/assets/shop/black_aquadry_soap_cradle.webp',
     '/assets/shop/white_aquadry_soap_cradle.webp',
     '/assets/shop/space_grey_aquadry_soap_cradle.webp',
+    //'/assets/shop/grey_aquadry_soap_cradle.webp',
+    //'/assets/shop/clear_aquadry_soap_cradle.webp',
+    '/assets/shop/neon_green_aquadry_soap_cradle.webp',
+    //'/assets/shop/sea_green_aquadry_soap_cradle.webp',
     '/assets/shop/dark_blue_aquadry_soap_cradle.webp',
+    '/assets/shop/sky_blue_aquadry_soap_cradle.webp',
+    //'/assets/shop/purple_aquadry_soap_cradle.webp',
+    //'/assets/shop/pink_aquadry_soap_cradle.webp',
     '/assets/shop/red_aquadry_soap_cradle.webp',
-    '/assets/shop/orange_aquadry_soap_cradle.webp'
+    '/assets/shop/orange_aquadry_soap_cradle.webp',
+    //'/assets/shop/yellow_aquadry_soap_cradle.webp',
+    //'/assets/shop/brown_aquadry_soap_cradle.webp',
+    //'/assets/shop/wood_colour_aquadry_soap_cradle.webp',
+    '/assets/shop/beige_aquadry_soap_cradle.webp',
+    '/assets/shop/black_aquadry_soap_cradle.webp'
   ],
   '3A': [
+    '/assets/shop/orange_securefit_hose-arm_clip_adapter_for_miele_wide_upholstery_nozzle.webp',
+    //'/assets/shop/yellow_securefit_hose-arm_clip_adapter_for_miele_wide_upholstery_nozzle.webp',
+    //'/assets/shop/brown_securefit_hose-arm_clip_adapter_for_miele_wide_upholstery_nozzle.webp',
+    //'/assets/shop/wood_colour_securefit_hose-arm_clip_adapter_for_miele_wide_upholstery_nozzle.webp',
+    '/assets/shop/beige_securefit_hose-arm_clip_adapter_for_miele_wide_upholstery_nozzle.webp',
     '/assets/shop/black_securefit_hose-arm_clip_adapter_for_miele_wide_upholstery_nozzle.webp',
     '/assets/shop/white_securefit_hose-arm_clip_adapter_for_miele_wide_upholstery_nozzle.webp',
+    //break
     '/assets/shop/space_grey_securefit_hose-arm_clip_adapter_for_miele_wide_upholstery_nozzle.webp',
+    //'/assets/shop/grey_securefit_hose-arm_clip_adapter_for_miele_wide_upholstery_nozzle.webp',
+    //'/assets/shop/clear_securefit_hose-arm_clip_adapter_for_miele_wide_upholstery_nozzle.webp',
+    '/assets/shop/neon_green_securefit_hose-arm_clip_adapter_for_miele_wide_upholstery_nozzle.webp',
+    //'/assets/shop/sea_green_securefit_hose-arm_clip_adapter_for_miele_wide_upholstery_nozzle.webp',
     '/assets/shop/dark_blue_securefit_hose-arm_clip_adapter_for_miele_wide_upholstery_nozzle.webp',
-    '/assets/shop/red_securefit_hose-arm_clip_adapter_for_miele_wide_upholstery_nozzle.webp',
-    '/assets/shop/orange_securefit_hose-arm_clip_adapter_for_miele_wide_upholstery_nozzle.webp'
+    '/assets/shop/sky_blue_securefit_hose-arm_clip_adapter_for_miele_wide_upholstery_nozzle.webp',
+    //'/assets/shop/purple_securefit_hose-arm_clip_adapter_for_miele_wide_upholstery_nozzle.webp',
+    //'/assets/shop/pink_securefit_hose-arm_clip_adapter_for_miele_wide_upholstery_nozzle.webp',
+    '/assets/shop/red_securefit_hose-arm_clip_adapter_for_miele_wide_upholstery_nozzle.webp'
   ]
   // Add more productId/image arrays here
 };
@@ -93,6 +129,10 @@ document.querySelectorAll('.circle-container').forEach(container => {
 
   const imageElement = carousel.imageElement;
 
+  // Get the card that contains this container and its remove button
+  const card = container.closest('.shop-card');
+  const removeBtn = card.querySelector('.remove-selection-btn');
+
   container.querySelectorAll('.circle').forEach(circle => {
     circle.addEventListener('click', () => {
       const selectedColor = circle.getAttribute('data-color');
@@ -104,8 +144,6 @@ document.querySelectorAll('.circle-container').forEach(container => {
         imagePath = `/assets/shop/${selectedColor}_aquadry_soap_cradle.webp`;
       } else if (productId === '3A') {
         imagePath = `/assets/shop/${selectedColor}_securefit_hose-arm_clip_adapter_for_miele_wide_upholstery_nozzle.webp`;
-      } else {
-        // fallback or error
       }
 
       imageElement.src = imagePath;
@@ -115,9 +153,35 @@ document.querySelectorAll('.circle-container').forEach(container => {
       imageElement.style.opacity = 1;
       imageElement.setAttribute('data-selected-color', selectedColor);
 
-      container.querySelectorAll('.circle').forEach(c => c.classList.remove('selected'));
+      // Highlight selected circle
+      container.closest('.shop-card').querySelectorAll('.circle').forEach(c => c.classList.remove('selected'));
       circle.classList.add('selected');
+
+      // Show remove button
+      if (removeBtn) removeBtn.style.display = 'inline-block';
     });
+  });
+});
+
+document.querySelectorAll('.remove-selection-btn').forEach(removeBtn => {
+  removeBtn.addEventListener('click', () => {
+    const productId = removeBtn.getAttribute('data-product-id');
+    const carousel = productCarousels[productId];
+    if (!carousel) return;
+
+    // Reset image and carousel
+    clearInterval(carousel.interval);
+    carousel.index = 0;
+    carousel.imageElement.src = carousel.images[0];
+    carousel.imageElement.removeAttribute('data-selected-color');
+    carousel.isActive = true;
+    startCarousel(productId, carousel.imageElement);
+
+    // Deselect all circles
+    document.querySelectorAll(`.circle-container[data-product-id="${productId}"] .circle`).forEach(c => c.classList.remove('selected'));
+
+    // Hide remove button
+    removeBtn.style.display = 'none';
   });
 });
 
@@ -262,4 +326,33 @@ function fetchAllProducts() {
     .catch(err => console.error("Failed to load products:", err));
 }
 
-document.addEventListener("DOMContentLoaded", fetchAllProducts);
+document.addEventListener("DOMContentLoaded", () => {
+  fetchAllProducts();
+
+  // Attach remove-color-button listeners after DOM fully loaded
+  document.addEventListener('click', function (e) {
+    if (!e.target.matches('.remove-selection-btn')) return;
+  
+    const removeBtn = e.target;
+    const productId = removeBtn.getAttribute('data-product-id');
+    const carousel = productCarousels[productId];
+    if (!carousel) return;
+  
+    console.log("Remove Color clicked for", productId); // ✅ Debug log
+  
+    clearInterval(carousel.interval);
+    carousel.index = 0;
+    carousel.imageElement.src = carousel.images[0];
+    carousel.imageElement.removeAttribute('data-selected-color');
+    carousel.isActive = true;
+    startCarousel(productId, carousel.imageElement);
+  
+    // Deselect all circles
+    document.querySelectorAll(`.circle-container[data-product-id="${productId}"] .circle`)
+      .forEach(c => c.classList.remove('selected'));
+  
+    // Hide remove button
+    removeBtn.style.display = 'none';
+  });
+});
+
