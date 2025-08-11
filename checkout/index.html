@@ -431,6 +431,7 @@
             const orderItems = cart.map(item => ({
               productId: item.id,
               quantity: item.qty
+              color: item.color // include colour here
             }));
       
             return fetch(`${BACKEND_URL}/api/create-order`, {
