@@ -8,7 +8,7 @@ html, body {
 }
 
 body {
-  background-image: url(../../background.webp);
+  background-image: url(../../assets/background.webp);
   background-repeat: no-repeat;
   background-position: right top;
   background-attachment: fixed;
